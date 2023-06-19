@@ -1,5 +1,6 @@
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import useChampions from "../hooks/useChampions";
+import ChampionCard from "./ChampionCard";
 
 const ChampionGrid = () => {
   const { champions, error } = useChampions();
@@ -7,11 +8,11 @@ const ChampionGrid = () => {
 
   //entries prende un oggetto di oggetti e lo rende un array di oggetti.
   return (
-    <ul>
-      {Object.entries(champions).map(([key, value]) => (
-        <li key={key}>{value.name}</li>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" spacing={10}>
+      {champions.map((champion) => (
+        <ChampionCard key={champion.id} champion={champion} />
       ))}
-    </ul>
+    </SimpleGrid>
   );
 };
 
