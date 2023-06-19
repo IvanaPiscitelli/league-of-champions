@@ -28,7 +28,7 @@ const useChampions = () => {
   useEffect(() => {
     const controller = new AbortController();
     apiClient
-      .get<FetchChampionsResponse>("/13.12.1/data/it_IT/champion.json", { signal: controller.signal })
+      .get<FetchChampionsResponse>("/13.12.1/data/en_US/champion.json", { signal: controller.signal })
       .then((res) => {
         const champions = res.data.data;
         //entries takes an object of objects and create a new array of objects.
