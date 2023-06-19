@@ -31,6 +31,7 @@ const useChampions = () => {
       .get<FetchChampionsResponse>("/13.12.1/data/it_IT/champion.json", { signal: controller.signal })
       .then((res) => {
         const champions = res.data.data;
+        //entries takes an object of objects and create a new array of objects.
         const newChampions = Object.entries(champions).map(([, value]) => {
           return { ...value, image: `${image}/${value.id}_0.jpg` };
         });
