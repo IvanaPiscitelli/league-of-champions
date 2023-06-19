@@ -8,7 +8,9 @@ const TagsNameList = ({ tags }: Props) => {
   return (
     <HStack marginY={1}>
       {tags.map((tag) => (
-        <Text color="gray.500">{tag}</Text>
+        <Text key={tag} color="gray.500">
+          {tag}
+        </Text>
       ))}
     </HStack>
   );
