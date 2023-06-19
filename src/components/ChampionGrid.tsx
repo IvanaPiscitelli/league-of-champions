@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import useChampions from "../hooks/useChampions";
 
-const MovieGrid = () => {
+const ChampionGrid = () => {
   const { champions, error } = useChampions();
   if (error) return <Text>{error}</Text>;
 
@@ -15,4 +15,4 @@ const MovieGrid = () => {
   );
 };
 
-export default MovieGrid;
+export default ChampionGrid;
