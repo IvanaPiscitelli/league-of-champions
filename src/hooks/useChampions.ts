@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
+import { image } from "../const";
 
-interface Image {
-  full: string;
-  sprite: string;
-}
-interface Champion {
+export interface Champion {
   key: string;
   id: string;
   name: string;
   tags: string[];
-  image: Image;
   title: string;
+  image: string;
 }
 
 interface DataChampion {
@@ -25,14 +22,20 @@ interface FetchChampionsResponse {
 }
 
 const useChampions = () => {
-  const [champions, setChampions] = useState<DataChampion>({});
+  const [champions, setChampions] = useState<Champion[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
     apiClient
-      .get<FetchChampionsResponse>("", { signal: controller.signal })
-      .then((res) => setChampions(res.data.data))
+      .get<FetchChampionsResponse>("/13.12.1/data/it_IT/champion.json", { signal: controller.signal })
+      .then((res) => {
+        const champions = res.data.data;
+        const newChampions = Object.entries(champions).map(([, value]) => {
+          return { ...value, image: `${image}/${value.id}_0.jpg` };
+        });
+        setChampions(newChampions);
+      })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
