@@ -2,6 +2,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import useChampions from "../hooks/useChampions";
 import ChampionCard from "./ChampionCard";
 import ChampionCardSkeleton from "./ChampionCardSkeleton";
+import ChampionCardContainer from "./ChampionCardContainer";
 
 const ChampionGrid = () => {
   const { champions, error, isLoading } = useChampions();
@@ -11,9 +12,16 @@ const ChampionGrid = () => {
 
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" spacing={10}>
-      {isLoading && skeletons.map((skeleton) => <ChampionCardSkeleton key={skeleton} />)}
+      {isLoading &&
+        skeletons.map((skeleton) => (
+          <ChampionCardContainer>
+            <ChampionCardSkeleton key={skeleton} />
+          </ChampionCardContainer>
+        ))}
       {champions.map((champion) => (
-        <ChampionCard key={champion.id} champion={champion} />
+        <ChampionCardContainer>
+          <ChampionCard key={champion.id} champion={champion} />
+        </ChampionCardContainer>
       ))}
     </SimpleGrid>
   );

@@ -9,7 +9,7 @@ interface Props {
 
 const ChampionCard = ({ champion }: Props) => {
   return (
-    <Card width="300px" borderRadius={10} overflow="hidden">
+    <Card>
       <Image src={champion.image} />
       <CardBody>
         <Heading fontSize="2xl">{champion.name}</Heading>
