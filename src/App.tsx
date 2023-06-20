@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import ChampionGrid from "./components/ChampionGrid";
+import TagList from "./components/TagList";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
       </GridItem>
       {/* Show component only in large screen 1024px */}
       <Show above="lg">
-        <GridItem area={"aside"}>Aside</GridItem>
+        <GridItem area={"aside"}>
+          <TagList />
+        </GridItem>
       </Show>
       <GridItem area={"main"}>
         <ChampionGrid />
