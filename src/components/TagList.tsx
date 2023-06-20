@@ -1,4 +1,4 @@
-import { Button, HStack, Heading, List, ListItem } from "@chakra-ui/react";
+import { Button, HStack, Heading, List, ListItem, Spinner } from "@chakra-ui/react";
 import useTags from "../hooks/useTags";
 
 // interface Props {
@@ -6,7 +6,9 @@ import useTags from "../hooks/useTags";
 // }
 // { onSelectTag }: Props
 const TagList = () => {
-  const { uniqueTags } = useTags();
+  const { uniqueTags, error, isLoading } = useTags();
+  if (error) return null;
+  if (isLoading) return <Spinner />;
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
