@@ -24,9 +24,11 @@ interface FetchChampionsResponse {
 const useChampions = () => {
   const [champions, setChampions] = useState<Champion[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
+    setIsLoading(true);
     apiClient
       .get<FetchChampionsResponse>("/13.12.1/data/en_US/champion.json", { signal: controller.signal })
       .then((res) => {
@@ -36,15 +38,17 @@ const useChampions = () => {
           return { ...value, image: `${image}/${value.id}_0.jpg` };
         });
         setChampions(newChampions);
+        setIsLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setIsLoading(false);
       });
 
     return () => controller.abort();
   }, []);
-  return { champions, error };
+  return { champions, error, isLoading };
 };
 
 export default useChampions;
