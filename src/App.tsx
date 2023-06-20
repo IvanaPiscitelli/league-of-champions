@@ -2,8 +2,14 @@ import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import ChampionGrid from "./components/ChampionGrid";
 import TagList from "./components/TagList";
+import { useState } from "react";
+
+interface ChampionQuery {
+  selectedTag: string;
+}
 
 function App() {
+  const [championQuery, setChampionQuery] = useState<ChampionQuery>({} as ChampionQuery);
   return (
     <Grid
       templateAreas={{
@@ -21,11 +27,14 @@ function App() {
       {/* Show component only in large screen 1024px */}
       <Show above="lg">
         <GridItem area={"aside"} paddingX={5}>
-          <TagList />
+          <TagList
+            onSelectTag={(tag) => setChampionQuery({ ...championQuery, selectedTag: tag })}
+            selectedTag={championQuery.selectedTag}
+          />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <ChampionGrid />
+        <ChampionGrid selectedTag={championQuery.selectedTag} />
       </GridItem>
     </Grid>
   );

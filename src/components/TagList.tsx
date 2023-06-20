@@ -1,11 +1,12 @@
 import { Button, HStack, Heading, List, ListItem, Spinner } from "@chakra-ui/react";
 import useTags from "../hooks/useTags";
 
-// interface Props {
-//   onSelectTag: (tag: string) => void;
-// }
-// { onSelectTag }: Props
-const TagList = () => {
+interface Props {
+  onSelectTag: (tag: string) => void;
+  selectedTag: string | null;
+}
+
+const TagList = ({ onSelectTag, selectedTag }: Props) => {
   const { uniqueTags, error, isLoading } = useTags();
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -21,8 +22,8 @@ const TagList = () => {
               <Button
                 whiteSpace="normal"
                 textAlign="left"
-                // fontWeight={tag === selectedGenre?.id ? "bold" : "normal"}
-                // onClick={() => onSelectTag(tag)}
+                fontWeight={tag === selectedTag ? "bold" : "normal"}
+                onClick={() => onSelectTag(tag)}
                 fontSize="lg"
                 variant="link"
               >
