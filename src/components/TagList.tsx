@@ -1,4 +1,4 @@
-import { Button, Heading, List, ListItem } from "@chakra-ui/react";
+import { Button, HStack, Heading, List, ListItem } from "@chakra-ui/react";
 import useTags from "../hooks/useTags";
 
 // interface Props {
@@ -14,17 +14,19 @@ const TagList = () => {
       </Heading>
       <List>
         {uniqueTags.map((tag) => (
-          <ListItem key={tag}>
-            <Button
-              whiteSpace="normal"
-              textAlign="left"
-              // fontWeight={tag === selectedGenre?.id ? "bold" : "normal"}
-              // onClick={() => onSelectTag(tag)}
-              fontSize="lg"
-              variant="link"
-            >
-              {tag}
-            </Button>
+          <ListItem key={tag} padding="5px">
+            <HStack>
+              <Button
+                whiteSpace="normal"
+                textAlign="left"
+                // fontWeight={tag === selectedGenre?.id ? "bold" : "normal"}
+                // onClick={() => onSelectTag(tag)}
+                fontSize="lg"
+                variant="link"
+              >
+                {tag}
+              </Button>
+            </HStack>
           </ListItem>
         ))}
       </List>
