@@ -11,16 +11,16 @@ const ChampionGrid = () => {
   if (error) return <Text>{error}</Text>;
 
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" spacing={10}>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" spacing={6}>
       {isLoading &&
         skeletons.map((skeleton) => (
-          <ChampionCardContainer>
-            <ChampionCardSkeleton key={skeleton} />
+          <ChampionCardContainer key={skeleton}>
+            <ChampionCardSkeleton />
           </ChampionCardContainer>
         ))}
       {champions.map((champion) => (
-        <ChampionCardContainer>
-          <ChampionCard key={champion.id} champion={champion} />
+        <ChampionCardContainer key={champion.id}>
+          <ChampionCard champion={champion} />
         </ChampionCardContainer>
       ))}
     </SimpleGrid>
