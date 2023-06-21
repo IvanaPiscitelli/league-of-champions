@@ -21,19 +21,19 @@ function App() {
         lg: "200px 1fr",
       }}
     >
-      <GridItem area={"nav"}>
+      <GridItem area="nav">
         <NavBar />
       </GridItem>
       {/* Show component only in large screen 1024px */}
       <Show above="lg">
-        <GridItem area={"aside"} paddingX={5}>
+        <GridItem area="aside" paddingX={5}>
           <TagList
             onSelectTag={(tag) => setChampionQuery({ ...championQuery, selectedTag: tag })}
             selectedTag={championQuery.selectedTag}
           />
         </GridItem>
       </Show>
-      <GridItem area={"main"}>
+      <GridItem area="main">
         <ChampionGrid selectedTag={championQuery.selectedTag} />
       </GridItem>
     </Grid>
