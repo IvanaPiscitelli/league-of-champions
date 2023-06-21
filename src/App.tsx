@@ -6,6 +6,7 @@ import { useState } from "react";
 
 interface ChampionQuery {
   selectedTag: string;
+  searchText: string;
 }
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearch={(searchText) => setChampionQuery({ ...championQuery, searchText })} />
       </GridItem>
       {/* Show component only in large screen 1024px */}
       <Show above="lg">
@@ -34,7 +35,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <ChampionGrid selectedTag={championQuery.selectedTag} />
+        <ChampionGrid selectedTag={championQuery.selectedTag} searchText={championQuery.searchText} />
       </GridItem>
     </Grid>
   );

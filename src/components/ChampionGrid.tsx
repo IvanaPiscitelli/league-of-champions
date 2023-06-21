@@ -6,14 +6,15 @@ import ChampionCardContainer from "./ChampionCardContainer";
 
 interface Props {
   selectedTag: string | null;
+  searchText: string | null;
 }
 
-const ChampionGrid = ({ selectedTag }: Props) => {
+const ChampionGrid = ({ selectedTag, searchText }: Props) => {
   const { champions, error, isLoading } = useChampions();
   const skeletons = [1, 2, 3, 4, 5, 6]; // Use Array because this data don't going to change over time.
 
   if (error) return <Text>{error}</Text>;
-  const filteredChampions = selectedTag ? [] : champions;
+  const filteredChampions = selectedTag || searchText ? [] : champions;
 
   if (selectedTag) {
     champions.map((champion) => {
@@ -22,7 +23,13 @@ const ChampionGrid = ({ selectedTag }: Props) => {
       }
     });
   }
-
+  if (searchText) {
+    champions.map((champion) => {
+      if (champion.name.toLowerCase().includes(searchText.toLowerCase())) {
+        filteredChampions.push(champion);
+      }
+    });
+  }
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" spacing={3}>
       {isLoading &&
