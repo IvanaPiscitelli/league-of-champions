@@ -13,7 +13,7 @@ const ChampionCard = ({ champion }: Props) => {
       <Image src={champion.image} />
       <CardBody>
         <Heading fontSize="2xl">{champion.name}</Heading>
-        <HStack justifyContent="space-between">
+        <HStack justifyContent="space-between" marginBottom={3}>
           <ChampionTitle title={champion.title} />
           <TagsNameList tags={champion.tags} />
         </HStack>
