@@ -1,11 +1,11 @@
-import { Button, HStack, Heading, Image, List, ListItem, Spinner } from "@chakra-ui/react";
-import useTags from "../hooks/useTags";
+import { Button, HStack, Heading, Image, List, ListItem } from "@chakra-ui/react";
 import fighter from "../assets/Fighter_icon.webp";
 import tank from "../assets/Tank_icon.webp";
 import mage from "../assets/Mage_icon.webp";
 import assassin from "../assets/Assassin_icon.webp";
 import marksman from "../assets/Marksman_icon.webp";
 import support from "../assets/Support_icon_WR.webp";
+import tags from "../data/tags";
 
 interface Props {
   onSelectTag: (tag: string) => void;
@@ -13,10 +13,6 @@ interface Props {
 }
 
 const TagList = ({ onSelectTag, selectedTag }: Props) => {
-  const { uniqueTags, error, isLoading } = useTags();
-  if (error) return null;
-  if (isLoading) return <Spinner />;
-
   const iconTags: { [key: string]: string } = {
     fighter: fighter,
     tank: tank,
@@ -31,10 +27,10 @@ const TagList = ({ onSelectTag, selectedTag }: Props) => {
         Tags
       </Heading>
       <List>
-        {uniqueTags.map((tag) => (
+        {tags.map((tag) => (
           <ListItem key={tag} padding="5px">
             <HStack>
-              <Image boxSize="32px" borderRadius={8} objectFit="cover" src={iconTags[tag.toLowerCase()]} />
+              <Image boxSize="32px" borderRadius={8} objectFit="fill" src={iconTags[tag.toLowerCase()]} />
               <Button
                 whiteSpace="normal"
                 textAlign="left"
