@@ -8,7 +8,7 @@ const ChampionHeading = ({ selectedTag }: Props) => {
   const heading = `${selectedTag || ""} Champions`;
 
   return (
-    <Heading as="h1" marginY={5} fontSize="5xl">
+    <Heading as="h1" marginY={5} fontSize="5xl" paddingLeft={3}>
       {heading}
     </Heading>
   );
