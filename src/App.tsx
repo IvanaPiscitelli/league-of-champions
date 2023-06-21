@@ -3,10 +3,11 @@ import NavBar from "./components/NavBar";
 import ChampionGrid from "./components/ChampionGrid";
 import TagList from "./components/TagList";
 import { useState } from "react";
+import ChampionHeading from "./components/ChampionHeading";
 
 interface ChampionQuery {
-  selectedTag: string;
-  searchText: string;
+  selectedTag: string | null;
+  searchText: string | null;
 }
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
+        <ChampionHeading selectedTag={championQuery.selectedTag} />
         <ChampionGrid selectedTag={championQuery.selectedTag} searchText={championQuery.searchText} />
       </GridItem>
     </Grid>
