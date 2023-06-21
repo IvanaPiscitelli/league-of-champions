@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import ChampionGrid from "./components/ChampionGrid";
 import TagList from "./components/TagList";
@@ -36,8 +36,10 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <ChampionHeading selectedTag={championQuery.selectedTag} />
-        <ChampionGrid selectedTag={championQuery.selectedTag} searchText={championQuery.searchText} />
+        <Box paddingLeft={2}>
+          <ChampionHeading selectedTag={championQuery.selectedTag} />
+          <ChampionGrid selectedTag={championQuery.selectedTag} searchText={championQuery.searchText} />
+        </Box>
       </GridItem>
     </Grid>
   );
