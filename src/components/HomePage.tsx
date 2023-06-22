@@ -6,7 +6,7 @@ const HomePage = () => {
     window.location.href = "/";
   };
 
-  return <Image src={logo} boxSize="80px" objectFit="contain" alt="logo" onClick={redirectToHome} />;
+  return <Image src={logo} boxSize="80px" objectFit="contain" alt="logo" onClick={redirectToHome} cursor="pointer" />;
 };
 
 export default HomePage;
