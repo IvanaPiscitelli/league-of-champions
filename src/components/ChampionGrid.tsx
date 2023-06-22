@@ -14,22 +14,17 @@ const ChampionGrid = ({ selectedTag, searchText }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6]; // Use Array because this data don't going to change over time.
 
   if (error) return <Text>{error}</Text>;
-  const filteredChampions = selectedTag || searchText ? [] : champions;
-
-  if (selectedTag) {
-    champions.map((champion) => {
-      if (champion.tags.indexOf(selectedTag) !== -1) {
-        filteredChampions.push(champion);
-      }
-    });
-  }
-  if (searchText) {
-    champions.map((champion) => {
-      if (champion.name.toLowerCase().includes(searchText.toLowerCase())) {
-        filteredChampions.push(champion);
-      }
-    });
-  }
+  const filteredChampions = champions.filter((champion) => {
+    if (selectedTag && searchText) {
+      return champion.tags.includes(selectedTag) && champion.name.toLowerCase().includes(searchText.toLowerCase());
+    } else if (selectedTag) {
+      return champion.tags.includes(selectedTag);
+    } else if (searchText) {
+      return champion.name.toLowerCase().includes(searchText.toLowerCase());
+    } else {
+      return true;
+    }
+  });
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="20px" spacing="18px">
       {isLoading &&
