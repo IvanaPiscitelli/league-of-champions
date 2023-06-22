@@ -1,7 +1,8 @@
-import { HStack, Image } from "@chakra-ui/react";
-import logo from "../assets/lol-logo.webp";
+import { HStack } from "@chakra-ui/react";
+
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
+import HomePage from "./HomePage";
 
 interface Props {
   onSearch: (searchText: string) => void;
@@ -10,7 +11,7 @@ interface Props {
 const NavBar = ({ onSearch }: Props) => {
   return (
     <HStack padding="10px">
-      <Image src={logo} boxSize="80px" objectFit="contain" alt="logo" />
+      <HomePage />
       <SearchInput onSearch={onSearch} />
       <ColorModeSwitch />
     </HStack>
